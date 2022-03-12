@@ -4,8 +4,9 @@ import sys
 from game_window_class import *
 
 WIDTH, HEIGHT = 800, 800
-BACKGROUND = (0, 0, 0)
+BACKGROUND = (90, 90, 90)
 FPS = 60
+
 
 def get_events():
     global running
@@ -13,8 +14,10 @@ def get_events():
         if event.type == pygame.QUIT:
             running = False
 
+
 def update():
     game_window.update()
+
 
 def draw():
     window.fill(BACKGROUND)
