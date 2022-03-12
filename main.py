@@ -23,7 +23,7 @@ def draw():
 pygame.init()
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
-game_window = Game_window(window, x, y)
+game_window = Game_window(window, 10, 10)
 
 
 running = True
