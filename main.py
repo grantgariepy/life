@@ -2,6 +2,7 @@
 import pygame
 import sys
 from game_window_class import *
+from button_class import *
 
 WIDTH, HEIGHT = 800, 800
 BACKGROUND = (90, 90, 90)
@@ -21,10 +22,14 @@ def get_events():
 
 def update():
     game_window.update()
+    for button in buttons:
+        button.update(mouse_pos)
 
 
 def draw():
     window.fill(BACKGROUND)
+    for button in buttons:
+        button.draw()
     game_window.draw()
 
 
@@ -45,14 +50,23 @@ def click_cell(pos):
         game_window.grid[grid_pos[1]][grid_pos[0]].alive = True
 
 
+def make_buttons():
+    buttons = []
+    buttons.append(Button(window, WIDTH//2-50, 50, 100, 30, text='RUN',
+                          colour=(76, 175, 80), hover_color=(71, 130, 97), bold_text=True))
+    return buttons
+
+
 pygame.init()
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 game_window = Game_window(window, 100, 180)
+buttons = make_buttons()
 
 
 running = True
 while running:
+    mouse_pos = pygame.mouse.get_pos()
     get_events()
     update()
     draw()
