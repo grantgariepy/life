@@ -16,8 +16,8 @@ class Cell:
 
     def draw(self):
         if self.alive:
-            self.image.fill((255, 255, 255))
+            self.image.fill((0, 0, 0))
         else:
-            self.image.fill((255, 255, 255))
-            pygame.draw.rect(self.image, (0, 0, 0), (1, 1, 18, 18))
+            self.image.fill((0, 0, 0))
+            pygame.draw.rect(self.image, (255, 255, 255), (1, 1, 18, 18))
         self.surface.blit(self.image, (self.grid_x*20, self.grid_y*20))

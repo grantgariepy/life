@@ -21,7 +21,7 @@ class Game_window:
                 cell.update()
 
     def draw(self):
-        self.image.fill((103, 100, 102))
+        self.image.fill((0, 0, 0))
         for row in self.grid:
             for cell in row:
                 cell.draw()
