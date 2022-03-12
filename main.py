@@ -29,7 +29,7 @@ def get_events():
 def update():
     game_window.update()
     for button in buttons:
-        button.update(mouse_pos)
+        button.update(mouse_pos, game_state=state)
 
 
 def draw():
@@ -59,7 +59,7 @@ def running_get_events():
 def running_update():
     game_window.update()
     for button in buttons:
-        button.update(mouse_pos)
+        button.update(mouse_pos, game_state=state)
 
 
 def running_draw():
@@ -89,7 +89,7 @@ def paused_get_events():
 def paused_update():
     game_window.update()
     for button in buttons:
-        button.update(mouse_pos)
+        button.update(mouse_pos, game_state=state)
 
 
 def paused_draw():
@@ -118,15 +118,18 @@ def click_cell(pos):
 
 def make_buttons():
     buttons = []
-    buttons.append(Button(window, WIDTH//5-50, 50, 100, 30, text='RUN',
+    buttons.append(Button(window, WIDTH//2-50, 50, 100, 30, text='RUN',
                           colour=(21, 199, 33), hover_color=(121, 204, 131),
                           bold_text=True, function=run_game, state='setting'))
     buttons.append(Button(window, WIDTH//2-50, 50, 100, 30, text='PAUSE',
                           colour=(56, 62, 228), hover_color=(87, 97, 206),
                           bold_text=True, function=pause_game, state='running'))
-    buttons.append(Button(window, WIDTH//1.25-50, 50, 100, 30, text='RESET',
+    buttons.append(Button(window, WIDTH//5-50, 50, 100, 30, text='RESET',
                           colour=(195, 21, 25), hover_color=(216, 90, 90),
-                          bold_text=True, function=reset_game, state='paused'))
+                          bold_text=True, function=reset_grid, state='paused'))
+    buttons.append(Button(window, WIDTH//1.25-50, 50, 100, 30, text='RESUME',
+                          colour=(21, 199, 33), hover_color=(121, 204, 131),
+                          bold_text=True, function=run_game, state='paused'))
     return buttons
 
 
@@ -140,8 +143,10 @@ def pause_game():
     state = 'paused'
 
 
-def reset_game():
-    pass
+def reset_grid():
+    global state
+    state = 'setting'
+    game_window.reset_grid()
 
 
 pygame.init()
@@ -168,6 +173,6 @@ while running:
         paused_draw()
     pygame.display.update()
     clock.tick(FPS)
-    print(state)
+    # print(state)
 pygame.quit()
 sys.exit()
