@@ -4,7 +4,7 @@ import sys
 from game_window_class import *
 from button_class import *
 
-WIDTH, HEIGHT = 800, 800
+WIDTH, HEIGHT = 1600, 800
 BACKGROUND = (90, 90, 90)
 FPS = 60
 
@@ -177,6 +177,6 @@ while running:
         paused_draw()
     pygame.display.update()
     clock.tick(FPS)
-    # print(state)
+
 pygame.quit()
 sys.exit()
