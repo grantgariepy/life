@@ -177,6 +177,6 @@ while running:
         paused_draw()
     pygame.display.update()
     clock.tick(FPS)
-    # print(state)
+
 pygame.quit()
 sys.exit()
