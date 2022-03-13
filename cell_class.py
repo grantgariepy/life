@@ -32,13 +32,13 @@ class Cell:
             neighbor[1] += self.grid_y
         for neighbor in neighbor_list:
             if neighbor[0] < 0:
-                neighbor[0] += 30
+                neighbor[0] += 60
             if neighbor[1] < 0:
                 neighbor[1] += 30
             if neighbor[1] > 29:
                 neighbor[1] -= 30
-            if neighbor[0] > 29:
-                neighbor[0] -= 30
+            if neighbor[0] > 59:
+                neighbor[0] -= 60
         for neighbor in neighbor_list:
             try:
                 self.neighbors.append(grid[neighbor[1]][neighbor[0]])
