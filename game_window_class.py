@@ -8,10 +8,10 @@ class Game_window:
     def __init__(self, screen, x, y):
         self.screen = screen
         self.pos = vec(x, y)
-        self.width, self.height = 1200, 600
+        self.width, self.height = 600, 600
         self.image = pygame.Surface((self.width, self.height))
         self.rect = self.image.get_rect()
-        self.rows = 60
+        self.rows = 30
         self.cols = 30
         self.grid = [[Cell(self.image, x, y) for x in range(self.cols)] for y in range(self.rows)]
         for row in self.grid:
@@ -53,5 +53,10 @@ class Game_window:
                 else:
                     if cell.alive_neighbors == 3:
                         new_grid[yidx][xidx].alive = True
+
+        # for yidx, row in enumerate(self.grid):
+        #     for xidx, cell in enumerate(row):
+        #         if cell.alive:
+        #             new_grid[yidx][xidx].set_colour()
 
         self.grid = new_grid

@@ -4,7 +4,7 @@ import sys
 from game_window_class import *
 from button_class import *
 
-WIDTH, HEIGHT = 1600, 800
+WIDTH, HEIGHT = 800, 800
 BACKGROUND = (90, 90, 90)
 FPS = 60
 

@@ -12,13 +12,14 @@ class Cell:
         self.rect = self.image.get_rect()
         self.neighbors = []
         self.alive_neighbors = 0
+        self.colour = (0, 0, 0)
 
     def update(self):
         self.rect.topleft = (self.grid_x*20, self.grid_y*20)
 
     def draw(self):
         if self.alive:
-            self.image.fill((0, 0, 0))
+            self.image.fill((self.colour))
         else:
             self.image.fill((0, 0, 0))
             pygame.draw.rect(self.image, (255, 255, 255), (0, 0, 20, 20))
@@ -31,13 +32,13 @@ class Cell:
             neighbor[1] += self.grid_y
         for neighbor in neighbor_list:
             if neighbor[0] < 0:
-                neighbor[0] += 60
+                neighbor[0] += 30
             if neighbor[1] < 0:
                 neighbor[1] += 30
             if neighbor[1] > 29:
                 neighbor[1] -= 30
-            if neighbor[0] > 59:
-                neighbor[0] -= 60
+            if neighbor[0] > 29:
+                neighbor[0] -= 30
         for neighbor in neighbor_list:
             try:
                 self.neighbors.append(grid[neighbor[1]][neighbor[0]])
@@ -51,3 +52,11 @@ class Cell:
                 count += 1
 
         self.alive_neighbors = count
+
+    # def set_colour(self):
+    #     for cell in self.neighbors:
+    #         if cell.colour != (0, 0, 0):
+    #             self.colour = cell.colour
+    #         else:
+    #             self.colour = (random.randint(0, 255), random.randint(
+    #                 0, 255),  random.randint(0, 255))
